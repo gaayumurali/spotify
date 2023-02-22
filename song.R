@@ -1,0 +1,45 @@
+install.packages("dplyr")
+library(dplyr)
+library(readr)
+top10s <- read_csv("top10s.csv")
+View(top10s)
+summary(top10s)
+str(top10s)
+unique(top10s["artist"])
+
+df=subset(top10s,top.genre=="dance pop")
+df
+install.packages("lattice")
+library(lattice)
+histogram(~year,df)
+histogram(~bpm,df)
+histogram(~nrgy,df)
+histogram(~val,df)
+histogram(~bpm|top.genre,data=top10s)
+histogram(~year,data=top10s)
+histogram(~nrgy|year,df,xlab = "year")
+unique(df["year"])
+histogram(~dnce,data=top10s)
+histogram(~dB,data=top10s)
+histogram(~bpm,data=top10s)
+histogram(~spch,data=top10s)
+histogram(~pop,data=top10s)
+histogram(~dur,data=top10s)
+histogram(~nrgy,data=top10s)
+histogram(~year|top.genre,data=top10s)
+install.packages("plyr")
+library(plyr)
+count(top10s,'artist')
+count(top10s,'top.genre')
+
+
+#Box plot
+bwplot(~year,data=top10s)
+bwplot(~bpm,data=top10s)
+bwplot(~nrgy,data=top10s)
+bwplot(~val,data=top10s)
+
+
+#Scatter plot
+xyplot(bpm~nrgy,data=top10s)
+xyplot(val~nrgy,data=top10s)
